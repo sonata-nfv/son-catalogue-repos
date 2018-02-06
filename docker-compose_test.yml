@@ -1,5 +1,5 @@
 son-catalogue-repos:
-  image: registry.sonata-nfv.eu:5000/son-catalogue-repos
+  image: registry.sonata-nfv.eu:5000/son-catalogue-repos:v3.1
   links:
    - mongo-catalogues:mongo
   ports:
@@ -7,7 +7,7 @@ son-catalogue-repos:
   restart: always
 
 son-catalogue-repos-doc:
-  image: registry.sonata-nfv.eu:5000/son-catalogue-repos
+  image: registry.sonata-nfv.eu:5000/son-catalogue-repos:v3.1
   ports:
     - "8800:8808"
   command: [rake,yard]
