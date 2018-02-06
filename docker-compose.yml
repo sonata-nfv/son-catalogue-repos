@@ -19,7 +19,7 @@ services:
     container_name: son-catalogue-repos
 
 son-catalogue-repositories_doc:
-  image: sonatanfv/son-catalogue-repos:dev
+  image: sonatanfv/son-catalogue-repos:v3.1
   ports:
     - "8808:8808"
   command: [rake,yard]
