@@ -115,13 +115,13 @@ def register_service(address, port, api_ver, path)
   case response.code.to_i
     when 201
       puts 'SON-CATALOGUE Service client: Registered'
-      return true
+      return true, 201
     when 409
       puts 'SON-CATALOGUE Service client: Already registered'
-      return true
+      return true, 409
     else
       puts 'Error: registration failure'
-      return false
+      return false, response.code.to_i
   end
 end
 
