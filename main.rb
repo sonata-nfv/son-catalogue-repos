@@ -106,8 +106,8 @@ configure do
   end
 
   unless settings.keycloak_pub_key.nil?
-    response = register_service(settings.auth_address, settings.auth_port, settings.api_ver, settings.reg_path)
-    logger.debug "REG_RESPONSE=#{response}"
+    response, r_code = register_service(settings.auth_address, settings.auth_port, settings.api_ver, settings.reg_path)
+    logger.debug "REG_RESPONSE=#{response} - #{r_code}"
     if response
       access_token = login_service(settings.auth_address, settings.auth_port, settings.api_ver, settings.login_path)
       logger.debug "ACCESS_TOKEN=#{access_token}"
