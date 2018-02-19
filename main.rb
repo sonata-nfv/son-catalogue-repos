@@ -86,7 +86,7 @@ configure do
       break unless keycloak_key['items']['public-key'].empty?
     end
     retries += 1
-    sleep(6)
+    sleep(10)
   end
 
   if code.to_i == 200
