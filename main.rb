@@ -86,7 +86,7 @@ configure do
       break unless keycloak_key['items']['public-key'].empty?
     end
     retries += 1
-    sleep(8)
+    sleep(10)
   end
 
   if code.to_i == 200
@@ -106,8 +106,14 @@ configure do
   end
 
   unless settings.keycloak_pub_key.nil?
-    response, r_code = register_service(settings.auth_address, settings.auth_port, settings.api_ver, settings.reg_path)
-    logger.debug "REG_RESPONSE=#{response} - #{r_code}"
+    response = false
+    while retries <= 6 do
+      response, r_code = register_service(settings.auth_address, settings.auth_port, settings.api_ver, settings.reg_path)
+      logger.debug "REG_RESPONSE=#{response} - #{r_code}"
+      break if response
+      retries += 1
+      sleep(5)
+      end
     if response
       access_token = login_service(settings.auth_address, settings.auth_port, settings.api_ver, settings.login_path)
       logger.debug "ACCESS_TOKEN=#{access_token}"
